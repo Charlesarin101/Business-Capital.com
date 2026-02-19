@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <title>Business Capital — Human Capital From Scratch</title>
+
+  <meta name="description" content="Business Capital is a workforce foundry. We build human capital from scratch so businesses can succeed." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- OpenGraph / Share -->
+  <meta property="og:title" content="Business Capital — Human Capital From Scratch" />
+  <meta property="og:description" content="We take willing people, form them with discipline and skill, and deploy them with 90-day oversight." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og.png" />
+
+  <style>
+    :root{
+      --bg:#0d0d0d;
+      --panel:#111111;
+      --text:#f2f2f2;
+      --muted:#b9b9b9;
+      --line:#2a2a2a;
+      --gold:#D4AF37;
+      --steel:#5C5C5C;
+      --white:#ffffff;
+      --shadow: 0 14px 44px rgba(0,0,0,.42);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(13,13,13,.78);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav .row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;min-width:220px}
+    .brand img{width:36px;height:36px;object-fit:contain}
+    .mark{
+      width:36px;height:36px;border-radius:12px;
+      border:1px solid rgba(212,175,55,.35);
+      display:grid;place-items:center;
+      box-shadow: 0 10px 24px rgba(212,175,55,.06);
+      background: linear-gradient(180deg, rgba(212,175,55,.14), rgba(212,175,55,.02));
+      font-weight:900; letter-spacing:.6px;
+    }
+    .brand .name{font-weight:800;letter-spacing:.35px}
+    .brand .tag{color:var(--muted);font-size:12px;margin-top:2px}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:12px}
+    .links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+    .btns{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);font-weight:700;font-size:14px;
+      cursor:pointer;
+    }
+    .btn:hover{background: rgba(255,255,255,.07)}
+    .btn.primary{
+      border-color: rgba(212,175,55,.45);
+      background: linear-gradient(180deg, rgba(212,175,55,.22), rgba(212,175,55,.06));
+    }
+
+    /* HERO */
+    .hero{padding:46px 0 22px}
+    .heroGrid{display:grid;grid-template-columns: 1.25fr .75fr;gap:16px}
+    @media (max-width: 920px){ .heroGrid{grid-template-columns:1fr} }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      color: var(--muted); font-size:13px; letter-spacing:.18em; text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .dot{width:8px;height:8px;border-radius:99px;background: var(--gold); box-shadow: 0 0 0 6px rgba(212,175,55,.10)}
+    h1{margin:0 0 12px;font-size:44px;line-height:1.08;letter-spacing:-.02em}
+    @media (max-width:520px){h1{font-size:36px}}
+    .sub{color:var(--muted);font-size:16px;margin:0 0 16px;max-width:62ch}
+    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .pill{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      padding:8px 10px;border-radius:999px;font-size:13px
+    }
+    .highlight{color:var(--text)}
+
+    .heroMedia{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+    }
+    .heroMedia .img{
+      height: 280px;
+      background:
+        linear-gradient(180deg, rgba(13,13,13,.10), rgba(13,13,13,.85)),
+        url("assets/hero.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .heroMedia .cap{
+      padding:16px 18px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .gold{color:var(--gold)}
+    .hr{height:1px;background:rgba(255,255,255,.06);margin:16px 0}
+
+    /* SECTIONS */
+    .section{padding:26px 0}
+    .section h2{margin:0 0 10px;font-size:26px;letter-spacing:-.01em}
+    .section p{margin:0 0 12px;color:var(--muted)}
+    .cols{display:grid;grid-template-columns: 1fr 1fr;gap:14px}
+    @media (max-width: 920px){ .cols{grid-template-columns:1fr} }
+    .list{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+    .list li{margin:8px 0}
+
+    .table{
+      width:100%;
+      border-collapse:separate;border-spacing:0;
+      overflow:hidden;border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:14px 14px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      vertical-align:top;
+      font-size:14px;
+    }
+    .table th{color: var(--text); font-weight:800; background: rgba(255,255,255,.03)}
+    .table tr:last-child td{border-bottom:none}
+
+    .callout{
+      border:1px solid rgba(212,175,55,.22);
+      background: linear-gradient(180deg, rgba(212,175,55,.10), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding:18px;
+      color: var(--muted);
+    }
+    .callout strong{color:var(--text)}
+
+    /* FORMS */
+    label{display:block;font-weight:700;margin:14px 0 6px}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(212,175,55,.45);
+      box-shadow: 0 0 0 4px rgba(212,175,55,.10)
+    }
+    textarea{min-height:110px;resize:vertical}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.row2{grid-template-columns:1fr}}
+    .note{font-size:13px;color:var(--muted);margin-top:10px}
+    .small{font-size:13px;color:var(--muted)}
+    .mediaCard{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .mediaCard .img{
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+    .mediaCard .cap{padding:14px 16px;color:var(--muted);font-size:13px}
+    .footer{
+      padding:44px 0 70px;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:13px
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap">
+      <div class="row">
+        <div class="brand">
+          <!-- Logo: place assets/logo.svg. If you only have PNG, rename to logo.png and update the src -->
+          <img src="assets/logo.svg" alt="Business Capital Logo" onerror="this.style.display='none'; document.getElementById('fallbackMark').style.display='grid';" />
+          <div id="fallbackMark" class="mark" style="display:none;">BC</div>
+
+          <div>
+            <div class="name">Business Capital</div>
+            <div class="tag">We build human capital from scratch.</div>
+          </div>
+        </div>
+
+        <nav class="links" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#individuals">For Individuals</a>
+          <a href="#businesses">For Businesses</a>
+          <a href="#process">Our Process</a>
+          <a href="#forms">Apply / Request</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="btns">
+          <a class="btn primary" href="#recruitForm">Recruit Intake</a>
+          <a class="btn" href="#businessForm">Business Request</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="card">
+            <div class="kicker"><span class="dot"></span> Human Capital From Scratch</div>
+            <h1>We build human capital from scratch so businesses can succeed.</h1>
+
+            <p class="sub">
+              Business Capital is a workforce foundry. We take willing people, form them with discipline and skill,
+              and deploy them with <span class="gold">90-day oversight</span>.
+            </p>
+
+            <div class="btns">
+              <a class="btn primary" href="#recruitForm">Apply (Individuals)</a>
+              <a class="btn" href="#businessForm">Request Staff (Businesses)</a>
+              <a class="btn" href="#process">See Our Process</a>
+            </div>
+
+            <div class="pillrow" aria-label="From scratch definition">
+              <div class="pill"><span class="highlight">No experience</span> required</div>
+              <div class="pill"><span class="highlight">No degree</span> necessary</div>
+              <div class="pill"><span class="highlight">No connections</span> needed</div>
+              <div class="pill"><span class="highlight">Raw potential</span> → formed workforce</div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="callout">
+              <strong>We are excellent people and it shows in our work.</strong><br/>
+              This is not recruitment. This is formation.
+            </div>
+          </div>
+
+          <div class="heroMedia">
+            <div class="img" role="img" aria-label="Business Capital hero image"></div>
+            <div class="cap">
+              Pilot base: <strong>Zaria, Nigeria</strong> •
+              <span class="gold">Formation</span> • Skill • Deployment
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDIVIDUALS -->
+    <section id="individuals" class="section">
+      <div class="wrap">
+        <h2>For Individuals</h2>
+        <p>The outcome is job-ready discipline + a usable skill + verified work habits.</p>
+
+        <div class="cols">
+          <div class="card">
+            <h3 style="margin:0 0 10px;font-size:18px">What you receive</h3>
+            <ul class="list">
+              <li>Basic work readiness training</li>
+              <li>Skill-specific development</li>
+              <li>Job placement support</li>
+              <li>Ongoing mentorship</li>
+            </ul>
+            <div class="hr"></div>
+            <div class="small">Entry begins with willingness. No experience required.</div>
+            <div class="btns" style="margin-top:12px">
+              <a class="btn primary" href="#recruitForm">Apply now</a>
+            </div>
+          </div>
+
+          <div class="mediaCard">
+            <div class="img" style="background-image:url('assets/training.jpg');"></div>
+            <div class="cap">Formation before placement. Discipline before skill.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSINESSES -->
+    <section id="businesses" class="section">
+      <div class="wrap">
+        <h2>For Businesses</h2>
+        <p>We provide pre-formed candidates plus 90-day oversight. You pay for formation and reliability, not placement fees.</p>
+
+        <div class="cols">
+          <div class="card">
+            <h3 style="margin:0 0 10px;font-size:18px">What you receive</h3>
+            <ul class="list">
+              <li>Pre-screened, pre-trained candidates</li>
+              <li>Custom training programs for your team</li>
+              <li>Human capital audit and development plans</li>
+              <li>Succession and continuity support</li>
+            </ul>
+            <div class="hr"></div>
+            <div class="small">We deploy formed people. Then we stay involved for 90 days.</div>
+            <div class="btns" style="margin-top:12px">
+              <a class="btn primary" href="#businessForm">Request staff</a>
+            </div>
+          </div>
+
+          <div class="mediaCard">
+            <div class="img" style="background-image:url('assets/business.jpg');"></div>
+            <div class="cap">Reliability is engineered. Oversight protects employer and worker.</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;font-size:18px">How we are different</h3>
+          <table class="table" aria-label="Difference table">
+            <thead>
+              <tr><th>Typical Agency</th><th>Business Capital</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Places ready-made talent</td><td>Makes talent from scratch</td></tr>
+              <tr><td>Takes a cut of salary</td><td>Charges businesses for formation, not placement fees</td></tr>
+              <tr><td>No ongoing relationship</td><td>90-day oversight after placement</td></tr>
+              <tr><td>Reacts to demand</td><td>Builds supply of capable people first</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <div class="wrap">
+        <h2>Our Process</h2>
+        <p>Step-by-step: from raw recruit → formed worker → placed and supported.</p>
+
+        <div class="card">
+          <table class="table" aria-label="Process steps">
+            <thead>
+              <tr><th>Step</th><th>What happens</th><th>Timeline</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1. Entry</strong></td><td>Individual walks in with nothing but willingness.</td><td>Day 1–3</td></tr>
+              <tr><td><strong>2. Formation</strong></td><td>30–90 days of foundational training (discipline + skill).</td><td>30–90 days</td></tr>
+              <tr><td><strong>3. Matching</strong></td><td>We connect them to a business that needs their profile.</td><td>3–7 days</td></tr>
+              <tr><td><strong>4. Placement</strong></td><td>They begin work. We continue oversight for 90 days.</td><td>90 days</td></tr>
+              <tr><td><strong>5. Growth</strong></td><td>Business can request advanced training for the same worker.</td><td>As needed</td></tr>
+            </tbody>
+          </table>
+          <div class="hr"></div>
+          <div class="callout">
+            <strong>Without formed people, nothing stands.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS (WHATSAPP CONNECTED) -->
+    <section id="forms" class="section">
+      <div class="wrap">
+        <h2>Apply / Request</h2>
+        <p>Submit your details. Your message will open directly in WhatsApp to our intake line.</p>
+
+        <div class="cols">
+          <!-- RECRUIT INTAKE -->
+          <div class="card" id="recruitForm">
+            <h3 style="margin:0 0 8px;font-size:18px">Recruit Intake</h3>
+            <p class="small">Entry begins with willingness. No experience required.</p>
+
+            <form id="formRecruit">
+              <!-- EXACT Phase 3 questions -->
+              <label>Full Name</label>
+              <input name="full_name" required />
+
+              <label>Phone Number</label>
+              <input name="phone_number" required />
+
+              <div class="row2">
+                <div>
+                  <label>Location / Area</label>
+                  <input name="location_area" required />
+                </div>
+                <div>
+                  <label>Age</label>
+                  <input name="age" type="number" min="10" max="80" required />
+                </div>
+              </div>
+
+              <label>Can you read and write? (Yes/No)</label>
+              <select name="can_read_write" required>
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+
+              <label>Are you willing to follow rules and daily routines? (Yes/No)</label>
+              <select name="willing_rules" required>
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+
+              <label>Are you available for 30–90 days training? (Yes/No)</label>
+              <select name="available_training" required>
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+
+              <label>Preferred work track</label>
+              <select name="preferred_track" required>
+                <option value="" selected disabled>Select</option>
+                <option>Cleaning Ops</option>
+                <option>Customer Service</option>
+                <option>Security Support</option>
+                <option>Office Assistant</option>
+                <option>Maintenance Support</option>
+                <option>Teaching Assistant</option>
+                <option>Other</option>
+              </select>
+
+              <label>What time did you submit this form? (auto)</label>
+              <input name="submitted_time" id="recruit_time" readonly />
+
+              <label>Why should we accept you? (short answer)</label>
+              <textarea name="why_accept" required></textarea>
+
+              <div class="btns" style="margin-top:14px">
+                <button class="btn primary" type="submit">Send to WhatsApp</button>
+                <button class="btn" type="reset">Clear</button>
+              </div>
+
+              <div class="note">
+                Confirmation message: <br/>
+                <strong>Thank you.</strong> Your intake has been received. If you qualify, you will be contacted with the next intake date.
+              </div>
+            </form>
+          </div>
+
+          <!-- BUSINESS REQUEST -->
+          <div class="card" id="businessForm">
+            <h3 style="margin:0 0 8px;font-size:18px">Business Request</h3>
+            <p class="small">Request pre-formed staff and 90-day oversight.</p>
+
+            <form id="formBusiness">
+              <label>Business Name</label>
+              <input name="business_name" required />
+
+              <div class="row2">
+                <div>
+                  <label>Contact Person</label>
+                  <input name="contact_person" required />
+                </div>
+                <div>
+                  <label>Phone / WhatsApp</label>
+                  <input name="phone_whatsapp" required />
+                </div>
+              </div>
+
+              <label>Email</label>
+              <input name="email" type="email" />
+
+              <label>Location</label>
+              <input name="location" required />
+
+              <label>Roles Needed (list roles + number)</label>
+              <textarea name="roles_needed" placeholder="Example: Cleaning staff (3), Office assistant (1), Teaching assistant (2)" required></textarea>
+
+              <label>Start Date Needed</label>
+              <input name="start_date" type="date" />
+
+              <label>Any special requirements?</label>
+              <textarea name="requirements" placeholder="Example: shift schedule, language needs, uniform, experience preferences"></textarea>
+
+              <div class="btns" style="margin-top:14px">
+                <button class="btn primary" type="submit">Send to WhatsApp</button>
+                <button class="btn" type="reset">Clear</button>
+              </div>
+
+              <div class="note">
+                Confirmation message: <br/>
+                <strong>Thank you.</strong> Your request has been received. We will contact you to confirm role requirements and deployment timeline.
+              </div>
+
+              <div class="hr"></div>
+              <div class="small">
+                Pricing principle: businesses pay for formation and reliability — not placement fees.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p>Direct lines for the pilot phase.</p>
+
+        <div class="cols">
+          <div class="card">
+            <h3 style="margin:0 0 10px;font-size:18px">Direct</h3>
+            <div class="small">WhatsApp (Intake):</div>
+            <div style="margin:6px 0 12px"><strong>+2348136805462</strong></div>
+
+            <div class="small">Phone:</div>
+            <div style="margin:6px 0 12px"><strong>+2349038129138</strong></div>
+
+            <div class="small">Email:</div>
+            <div style="margin:6px 0 0"><strong>arinonebusiness@gmail.com</strong></div>
+
+            <div class="hr"></div>
+            <div class="btns">
+              <a class="btn primary" href="https://wa.me/2348136805462" target="_blank" rel="noopener">Open WhatsApp</a>
+              <a class="btn" href="mailto:arinonebusiness@gmail.com">Email Us</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin:0 0 10px;font-size:18px">Location</h3>
+            <p class="small" style="margin:0 0 10px">
+              New Extension Samaru, Zaria, Kaduna, Nigeria
+            </p>
+
+            <div class="hr"></div>
+            <div class="callout">
+              <strong>Formation • Skill • Deployment</strong><br/>
+              90-day oversight after placement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap">
+        © <span id="y"></span> Business Capital — Human Capital From Scratch
+        <div class="small" style="margin-top:8px">We do not recruit. We form.</div>
+      </div>
+    </footer>
+  </main>
+
+<script>
+  // ===== SETTINGS (LOCKED) =====
+  const WHATSAPP_NUMBER = "2348136805462"; // no plus sign
+
+  // Auto timestamps
+  const now = new Date();
+  document.getElementById("recruit_time").value = now.toLocaleString();
+
+  // Footer year
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  // Helpers
+  function openWhatsApp(message){
+    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+    window.open(url, "_blank", "noopener");
+  }
+
+  // Recruit Intake -> WhatsApp
+  document.getElementById("formRecruit").addEventListener("submit", function(e){
+    e.preventDefault();
+    const f = new FormData(this);
+
+    const msg =
+`BUSINESS CAPITAL — RECRUIT INTAKE
+Full Name: ${f.get("full_name")}
+Phone Number: ${f.get("phone_number")}
+Location/Area: ${f.get("location_area")}
+Age: ${f.get("age")}
+Can read/write: ${f.get("can_read_write")}
+Willing to follow rules/daily routines: ${f.get("willing_rules")}
+Available for 30–90 days training: ${f.get("available_training")}
+Preferred work track: ${f.get("preferred_track")}
+Submitted time: ${f.get("submitted_time")}
+Why should we accept you: ${f.get("why_accept")}
+
+Thank you. Your intake has been received. If you qualify, you will be contacted with the next intake date.`;
+
+    openWhatsApp(msg);
+  });
+
+  // Business Request -> WhatsApp
+  document.getElementById("formBusiness").addEventListener("submit", function(e){
+    e.preventDefault();
+    const f = new FormData(this);
+
+    const msg =
+`BUSINESS CAPITAL — BUSINESS REQUEST
+Business Name: ${f.get("business_name")}
+Contact Person: ${f.get("contact_person")}
+Phone/WhatsApp: ${f.get("phone_whatsapp")}
+Email: ${f.get("email") || "N/A"}
+Location: ${f.get("location")}
+Roles Needed: ${f.get("roles_needed")}
+Start Date Needed: ${f.get("start_date") || "N/A"}
+Special requirements: ${f.get("requirements") || "N/A"}
+
+Thank you. Your request has been received. We will contact you to confirm role requirements and deployment timeline.`;
+
+    openWhatsApp(msg);
+  });
+</script>
+</body>
+</html>
