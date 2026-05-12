@@ -65,6 +65,70 @@
       background: rgba(255,255,255,.04);
       color:var(--text);font-weight:700;font-size:14px;
       cursor:pointer;
+      /* =========================================
+   BUSINESS CAPITAL INBUILT LOGO
+========================================= */
+
+.bcLogo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.bcShield{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background: linear-gradient(180deg,#D4AF37,#8B6B14);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  box-shadow:0 10px 30px rgba(212,175,55,.22);
+}
+
+.bcShield::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border-radius:14px;
+  background:#0d0d0d;
+}
+
+.bcInner{
+  position:relative;
+  z-index:2;
+  color:#D4AF37;
+  font-weight:900;
+  font-size:18px;
+  letter-spacing:.08em;
+}
+
+.bcTextWrap{
+  display:flex;
+  flex-direction:column;
+}
+
+.bcName{
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:.12em;
+  color:#ffffff;
+}
+
+.bcLine{
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,#D4AF37,transparent);
+  margin:5px 0;
+}
+
+.bcTag{
+  color:#b9b9b9;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
     }
     .btn:hover{background: rgba(255,255,255,.07)}
     .btn.primary{
@@ -179,20 +243,29 @@
     @media (max-width:720px){.row2{grid-template-columns:1fr}}
     .note{font-size:13px;color:var(--muted);margin-top:10px}
     .small{font-size:13px;color:var(--muted)}
-    .mediaCard{
+    .mediaCard .img{
+  height:260px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  filter:contrast(1.02) brightness(.82);
+}
+
+.mediaCard .img::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.05),
+    rgba(0,0,0,.35)
+  );
+}
       border-radius: var(--radius);
       overflow:hidden;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.02);
-    }
-    .mediaCard .img{
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-    }
-    .mediaCard .cap{padding:14px 16px;color:var(--muted);font-size:13px}
-    .footer{
-      padding:44px 0 70px;
+  background-size    padding:44px 0 70px;
       border-top:1px solid rgba(255,255,255,.06);
       color:var(--muted);
       font-size:13px
@@ -207,9 +280,17 @@
       <div class="row">
         <div class="brand">
           <!-- Logo: place assets/logo.svg. If you only have PNG, rename to logo.png and update the src -->
-          <img src="8982a7b2-6fa4-4f89-b024-dfeddcf670b3.png" alt="Business Capital Logo" onerror="this.style.display='none'; document.getElementById('fallbackMark').style.display='grid';" />
-          <div id="fallbackMark" class="mark" style="display:none;">BC</div>
+          <div class="bcLogo">
+  <div class="bcShield">
+    <div class="bcInner">BC</div>
+  </div>
 
+  <div class="bcTextWrap">
+    <div class="bcName">BUSINESS CAPITAL</div>
+    <div class="bcLine"></div>
+    <div class="bcTag">Human Capital From Scratch</div>
+  </div>
+</div>
           <div>
             <div class="name">Business Capital</div>
             <div class="tag">We build human capital from scratch.</div>
