@@ -173,12 +173,12 @@
       box-shadow: var(--shadow);
     }
     .heroMedia .img{
-      height: 280px;
+  height:420px;
       background:
         linear-gradient(180deg, rgba(13,13,13,.10), rgba(13,13,13,.85)),
         url("assets/hero.jpg");
       background-size: cover;
-      background-position: center;
+      background-position:center center;
     }
     .heroMedia .cap{
       padding:16px 18px;
@@ -270,6 +270,78 @@
       color:var(--muted);
       font-size:13px
     }
+    /* =========================================
+   MOBILE REFINEMENT
+========================================= */
+
+@media (max-width:768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
+  .hero{
+    padding-top:24px;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:16px;
+  }
+
+  h1{
+    font-size:34px;
+    line-height:1.12;
+  }
+
+  .section{
+    padding:18px 0;
+  }
+
+  .heroMedia .img{
+    height:300px;
+  }
+
+  .mediaCard .img{
+    height:220px;
+  }
+
+  .btns{
+    width:100%;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .links{
+    width:100%;
+    justify-content:center;
+  }
+
+  .table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
+  .pillrow{
+    gap:8px;
+  }
+
+  .pill{
+    width:100%;
+    text-align:center;
+  }
+
+  .bcName{
+    font-size:14px;
+  }
+
+  .bcTag{
+    font-size:10px;
+  }
+}
   </style>
 </head>
 
