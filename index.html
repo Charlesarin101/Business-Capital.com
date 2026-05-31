@@ -1,789 +1,1033 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#111111" />
-  <title>Business Capital — Human Capital From Scratch</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Capital — We Build Human Capital From Scratch</title>
 
-  <meta name="description" content="Business Capital is a workforce foundry. We build human capital from scratch so businesses can succeed." />
-  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Business Capital builds human capital from scratch through workforce formation, placement, and oversight systems.">
+  <meta property="og:title" content="Business Capital">
+  <meta property="og:description" content="We build human capital from scratch.">
+  <meta property="og:image" content="assets/og.png">
+  <meta property="og:type" content="website">
 
-  <!-- OpenGraph / Share -->
-  <meta property="og:title" content="Business Capital — Human Capital From Scratch" />
-  <meta property="og:description" content="We take willing people, form them with discipline and skill, and deploy them with 90-day oversight." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0d0d0d;
-      --panel:#111111;
-      --text:#f2f2f2;
-      --muted:#b9b9b9;
-      --line:#2a2a2a;
+      --bg:#0B0B0B;
+      --card:#131313;
+      --text:#F4F4F4;
+      --muted:#A8A8A8;
+      --line:rgba(255,255,255,.08);
       --gold:#D4AF37;
-      --steel:#5C5C5C;
-      --white:#ffffff;
-      --shadow: 0 14px 44px rgba(0,0,0,.42);
-      --radius: 18px;
-      --max: 1120px;
+      --gold-soft:rgba(212,175,55,.15);
+      --max:1200px;
+      --radius:24px;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Inter',sans-serif;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(92%, var(--max));
+      margin:auto;
+    }
 
     /* NAV */
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(11,11,11,.85);
+      border-bottom:1px solid var(--line);
+    }
+
     .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(13,13,13,.78);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
     }
-    .nav .row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:12px;min-width:220px}
-    .brand img{width:36px;height:36px;object-fit:contain}
-    .mark{
-      width:36px;height:36px;border-radius:12px;
-      border:1px solid rgba(212,175,55,.35);
-      display:grid;place-items:center;
-      box-shadow: 0 10px 24px rgba(212,175,55,.06);
-      background: linear-gradient(180deg, rgba(212,175,55,.14), rgba(212,175,55,.02));
-      font-weight:900; letter-spacing:.6px;
+
+    .bcLogo{
+      display:flex;
+      align-items:center;
+      gap:14px;
     }
-    .brand .name{font-weight:800;letter-spacing:.35px}
-    .brand .tag{color:var(--muted);font-size:12px;margin-top:2px}
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .links a{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:12px}
-    .links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color:var(--text);font-weight:700;font-size:14px;
-      cursor:pointer;
-      /* =========================================
-   BUSINESS CAPITAL INBUILT LOGO
-========================================= */
 
-.bcLogo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.bcShield{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background: linear-gradient(180deg,#D4AF37,#8B6B14);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  box-shadow:0 10px 30px rgba(212,175,55,.22);
-}
-
-.bcShield::before{
-  content:"";
-  position:absolute;
-  inset:2px;
-  border-radius:14px;
-  background:#0d0d0d;
-}
-
-.bcInner{
-  position:relative;
-  z-index:2;
-  color:#D4AF37;
-  font-weight:900;
-  font-size:18px;
-  letter-spacing:.08em;
-}
-
-.bcTextWrap{
-  display:flex;
-  flex-direction:column;
-}
-
-.bcName{
-  font-size:16px;
-  font-weight:900;
-  letter-spacing:.12em;
-  color:#ffffff;
-}
-
-.bcLine{
-  width:100%;
-  height:2px;
-  background:linear-gradient(90deg,#D4AF37,transparent);
-  margin:5px 0;
-}
-
-.bcTag{
-  color:#b9b9b9;
-  font-size:11px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
+    .bcShield{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#D4AF37,#8B6B14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      box-shadow:0 12px 30px rgba(212,175,55,.25);
     }
-    .btn:hover{background: rgba(255,255,255,.07)}
-    .btn.primary{
-      border-color: rgba(212,175,55,.45);
-      background: linear-gradient(180deg, rgba(212,175,55,.22), rgba(212,175,55,.06));
+
+    .bcShield::before{
+      content:"";
+      position:absolute;
+      inset:2px;
+      border-radius:16px;
+      background:#0B0B0B;
+    }
+
+    .bcInner{
+      position:relative;
+      z-index:2;
+      color:var(--gold);
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+
+    .bcTextWrap{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .bcName{
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:.12em;
+    }
+
+    .bcLine{
+      width:100%;
+      height:2px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+      margin:5px 0;
+    }
+
+    .bcTag{
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    nav{
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+
+    nav a{
+      color:var(--muted);
+      font-size:14px;
+      transition:.25s ease;
+    }
+
+    nav a:hover{
+      color:var(--text);
     }
 
     /* HERO */
-    .hero{padding:46px 0 22px}
-    .heroGrid{display:grid;grid-template-columns: 1.25fr .75fr;gap:16px}
-    @media (max-width: 920px){ .heroGrid{grid-template-columns:1fr} }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:22px;
+
+    .hero{
+      padding:100px 0 70px;
+      position:relative;
     }
-    .kicker{
-      display:inline-flex;align-items:center;gap:10px;
-      color: var(--muted); font-size:13px; letter-spacing:.18em; text-transform:uppercase;
-      margin-bottom:12px;
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:42px;
+      align-items:center;
     }
-    .dot{width:8px;height:8px;border-radius:99px;background: var(--gold); box-shadow: 0 0 0 6px rgba(212,175,55,.10)}
-    h1{margin:0 0 12px;font-size:44px;line-height:1.08;letter-spacing:-.02em}
-    @media (max-width:520px){h1{font-size:36px}}
-    .sub{color:var(--muted);font-size:16px;margin:0 0 16px;max-width:62ch}
-    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .pill{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      padding:8px 10px;border-radius:999px;font-size:13px
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(212,175,55,.2);
+      background:rgba(212,175,55,.08);
+      border-radius:999px;
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:24px;
     }
-    .highlight{color:var(--text)}
+
+    h1{
+      font-size:68px;
+      line-height:1.02;
+      font-weight:900;
+      letter-spacing:-.05em;
+      margin-bottom:22px;
+      max-width:720px;
+    }
+
+    .sub{
+      font-size:18px;
+      color:#CFCFCF;
+      max-width:680px;
+      line-height:1.9;
+      margin-bottom:34px;
+    }
+
+    .btns{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      font-weight:700;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(212,175,55,.26), rgba(212,175,55,.08));
+      border-color:rgba(212,175,55,.4);
+      box-shadow:0 10px 30px rgba(212,175,55,.14);
+    }
 
     .heroMedia{
-      border-radius: var(--radius);
+      position:relative;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
-      box-shadow: var(--shadow);
+      border-radius:30px;
+      border:1px solid var(--line);
+      box-shadow:0 30px 80px rgba(0,0,0,.45);
     }
+
     .heroMedia .img{
-  height:420px;
+      height:520px;
       background:
-        linear-gradient(180deg, rgba(13,13,13,.10), rgba(13,13,13,.85)),
-        url("assets/hero.jpg");
-      background-size: cover;
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.6)),
+        url('assets/hero.jpg');
+      background-size:cover;
       background-position:center center;
+      filter:contrast(1.02) brightness(.88);
     }
-    .heroMedia .cap{
-      padding:16px 18px;
-      color: var(--muted);
-      font-size:13px;
+
+    .heroMedia::after{
+      content:"";
+      position:absolute;
+      inset:auto -20% -40% auto;
+      width:320px;
+      height:320px;
+      background:radial-gradient(circle, rgba(212,175,55,.2), transparent 70%);
     }
-    .gold{color:var(--gold)}
-    .hr{height:1px;background:rgba(255,255,255,.06);margin:16px 0}
 
-    /* SECTIONS */
-    .section{padding:26px 0}
-    .section h2{margin:0 0 10px;font-size:26px;letter-spacing:-.01em}
-    .section p{margin:0 0 12px;color:var(--muted)}
-    .cols{display:grid;grid-template-columns: 1fr 1fr;gap:14px}
-    @media (max-width: 920px){ .cols{grid-template-columns:1fr} }
-    .list{margin:10px 0 0;padding-left:18px;color:var(--muted)}
-    .list li{margin:8px 0}
+    /* SECTION */
 
-    .table{
-      width:100%;
-      border-collapse:separate;border-spacing:0;
-      overflow:hidden;border-radius:16px;
+    .section{
+      padding:80px 0;
+      position:relative;
+    }
+
+    .section::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:92%;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+    }
+
+    .sectionHead{
+      margin-bottom:40px;
+    }
+
+    h2{
+      font-size:42px;
+      font-weight:800;
+      line-height:1.08;
+      margin-bottom:14px;
+      letter-spacing:-.03em;
+    }
+
+    .lead{
+      max-width:720px;
+      color:var(--muted);
+    }
+
+    /* GRID */
+
+    .grid3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+    }
+
+    /* CARD */
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
+      border-radius:24px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 16px 50px rgba(0,0,0,.35);
+      transition:.3s ease;
     }
-    .table th, .table td{
-      text-align:left;
-      padding:14px 14px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      vertical-align:top;
-      font-size:14px;
-    }
-    .table th{color: var(--text); font-weight:800; background: rgba(255,255,255,.03)}
-    .table tr:last-child td{border-bottom:none}
 
-    .callout{
-      border:1px solid rgba(212,175,55,.22);
-      background: linear-gradient(180deg, rgba(212,175,55,.10), rgba(255,255,255,.02));
-      border-radius: var(--radius);
-      padding:18px;
-      color: var(--muted);
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(212,175,55,.24);
     }
-    .callout strong{color:var(--text)}
+
+    .card .img{
+      height:250px;
+      background-size:cover;
+      background-position:center;
+      filter:contrast(1.02) brightness(.82);
+      position:relative;
+    }
+
+    .card .img::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.38));
+    }
+
+    .cardBody{
+      padding:28px;
+    }
+
+    h3{
+      font-size:22px;
+      margin-bottom:14px;
+    }
+
+    ul{
+      padding-left:18px;
+      color:#D2D2D2;
+    }
+
+    li{
+      margin-bottom:10px;
+    }
+
+    /* PROCESS */
+
+    .timeline{
+      display:grid;
+      gap:20px;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:80px 1fr;
+      gap:22px;
+      align-items:flex-start;
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.02);
+    }
+
+    .num{
+      width:60px;
+      height:60px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#D4AF37,#8B6B14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#0B0B0B;
+      font-weight:900;
+      font-size:20px;
+    }
+
+    /* TABLE */
+
+    .tableWrap{
+      overflow:auto;
+      border-radius:24px;
+      border:1px solid var(--line);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:700px;
+      background:rgba(255,255,255,.02);
+    }
+
+    th,
+    td{
+      padding:18px;
+      text-align:left;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    th{
+      color:var(--gold);
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    td{
+      color:#D7D7D7;
+    }
 
     /* FORMS */
-    label{display:block;font-weight:700;margin:14px 0 6px}
-    input, select, textarea{
+
+    form{
+      display:grid;
+      gap:16px;
+    }
+
+    input,
+    textarea,
+    select{
       width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#101010;
       color:var(--text);
+      font-family:inherit;
       outline:none;
     }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(212,175,55,.45);
-      box-shadow: 0 0 0 4px rgba(212,175,55,.10)
-    }
-    textarea{min-height:110px;resize:vertical}
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:720px){.row2{grid-template-columns:1fr}}
-    .note{font-size:13px;color:var(--muted);margin-top:10px}
-    .small{font-size:13px;color:var(--muted)}
-    .mediaCard .img{
-  height:260px;
-  background-size:cover;
-  background-position:center;
-  position:relative;
-  filter:contrast(1.02) brightness(.82);
-}
 
-.mediaCard .img::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.05),
-    rgba(0,0,0,.35)
-  );
-}
-      border-radius: var(--radius);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
-  background-size    padding:44px 0 70px;
-      border-top:1px solid rgba(255,255,255,.06);
+    textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    /* METRICS */
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .metric{
+      padding:30px;
+      border-radius:24px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .metric h3{
+      font-size:40px;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .metric p{
       color:var(--muted);
-      font-size:13px
     }
-    /* =========================================
-   MOBILE REFINEMENT
-========================================= */
 
-@media (max-width:768px){
+    /* FOOTER */
 
-  body{
-    overflow-x:hidden;
-  }
+    footer{
+      padding:60px 0 40px;
+      text-align:center;
+    }
 
-  .hero{
-    padding-top:24px;
-  }
+    .footerText{
+      color:var(--muted);
+      max-width:720px;
+      margin:18px auto 0;
+    }
 
-  .card{
-    padding:18px;
-    border-radius:16px;
-  }
+    /* RESPONSIVE */
 
-  h1{
-    font-size:34px;
-    line-height:1.12;
-  }
+    @media(max-width:980px){
+      .heroGrid,
+      .grid3,
+      .grid2,
+      .metrics{
+        grid-template-columns:1fr;
+      }
 
-  .section{
-    padding:18px 0;
-  }
+      h1{
+        font-size:48px;
+      }
 
-  .heroMedia .img{
-    height:300px;
-  }
+      .heroMedia .img{
+        height:340px;
+      }
+    }
 
-  .mediaCard .img{
-    height:220px;
-  }
+    @media(max-width:768px){
 
-  .btns{
-    width:100%;
-  }
+      nav{
+        display:none;
+      }
 
-  .btn{
-    width:100%;
-  }
+      .hero{
+        padding:60px 0 40px;
+      }
 
-  .links{
-    width:100%;
-    justify-content:center;
-  }
+      .section{
+        padding:54px 0;
+      }
 
-  .table{
-    display:block;
-    overflow-x:auto;
-    white-space:nowrap;
-  }
+      h1{
+        font-size:40px;
+        line-height:1.06;
+      }
 
-  .pillrow{
-    gap:8px;
-  }
+      h2{
+        font-size:32px;
+      }
 
-  .pill{
-    width:100%;
-    text-align:center;
-  }
+      .sub{
+        font-size:16px;
+      }
 
-  .bcName{
-    font-size:14px;
-  }
+      .btns{
+        flex-direction:column;
+      }
 
-  .bcTag{
-    font-size:10px;
-  }
-}
+      .btn{
+        width:100%;
+      }
+
+      .heroMedia .img{
+        height:280px;
+      }
+
+      .card .img{
+        height:220px;
+      }
+
+      .step{
+        grid-template-columns:1fr;
+      }
+
+      .bcName{
+        font-size:14px;
+      }
+
+      .bcTag{
+        font-size:10px;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="wrap">
-      <div class="row">
-        <div class="brand">
-          <!-- Logo: place assets/logo.svg. If you only have PNG, rename to logo.png and update the src -->
-          <div class="bcLogo">
-  <div class="bcShield">
-    <div class="bcInner">BC</div>
-  </div>
 
-  <div class="bcTextWrap">
-    <div class="bcName">BUSINESS CAPITAL</div>
-    <div class="bcLine"></div>
-    <div class="bcTag">Human Capital From Scratch</div>
-  </div>
-</div>
-          <div>
-            <div class="name">Business Capital</div>
-            <div class="tag">We build human capital from scratch.</div>
-          </div>
-        </div>
+<header>
+  <div class="container nav">
 
-        <nav class="links" aria-label="Primary navigation">
-          <a href="#home">Home</a>
-          <a href="#individuals">For Individuals</a>
-          <a href="#businesses">For Businesses</a>
-          <a href="#process">Our Process</a>
-          <a href="#forms">Apply / Request</a>
-          <a href="#contact">Contact</a>
-        </nav>
+    <div class="bcLogo">
+      <div class="bcShield">
+        <div class="bcInner">BC</div>
+      </div>
 
-        <div class="btns">
-          <a class="btn primary" href="#recruitForm">Recruit Intake</a>
-          <a class="btn" href="#businessForm">Business Request</a>
-        </div>
+      <div class="bcTextWrap">
+        <div class="bcName">BUSINESS CAPITAL</div>
+        <div class="bcLine"></div>
+        <div class="bcTag">Human Capital From Scratch</div>
       </div>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <main id="home">
-    <section class="hero">
-      <div class="wrap">
-        <div class="heroGrid">
-          <div class="card">
-            <div class="kicker"><span class="dot"></span> Human Capital From Scratch</div>
-            <h1>We build human capital from scratch so businesses can succeed.</h1>
+    <nav>
+      <a href="#individuals">Individuals</a>
+      <a href="#businesses">Businesses</a>
+      <a href="#process">Process</a>
+      <a href="#oversight">Oversight</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-            <p class="sub">
-              Business Capital is a workforce foundry. We take willing people, form them with discipline and skill,
-              and deploy them with <span class="gold">90-day oversight</span>.
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container heroGrid">
+
+    <div>
+      <div class="eyebrow">
+        Workforce Formation Infrastructure
+      </div>
+
+      <h1>
+        We Build Human Capital From Scratch.
+      </h1>
+
+      <p class="sub">
+        Business Capital transforms raw potential into structured workforce capability through formation, placement, and oversight systems designed for long-term business reliability.
+      </p>
+
+      <div class="btns">
+        <a href="#individuals" class="btn primary">Apply For Formation</a>
+        <a href="#businesses" class="btn">Request Workforce</a>
+      </div>
+    </div>
+
+    <div class="heroMedia">
+      <div class="img"></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="metrics">
+
+      <div class="metric">
+        <h3>30–90</h3>
+        <p>Days of workforce formation before placement.</p>
+      </div>
+
+      <div class="metric">
+        <h3>90</h3>
+        <p>Days of oversight after deployment.</p>
+      </div>
+
+      <div class="metric">
+        <h3>3</h3>
+        <p>Core pillars: Formation · Placement · Capacity Building.</p>
+      </div>
+
+      <div class="metric">
+        <h3>0</h3>
+        <p>No degree, experience, or connections required.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="individuals">
+  <div class="container">
+
+    <div class="sectionHead">
+      <h2>For Individuals</h2>
+      <p class="lead">
+        We take willing individuals and form them into structured, disciplined, employable workforce talent.
+      </p>
+    </div>
+
+    <div class="grid2">
+
+      <div class="card">
+        <div class="img" style="background-image:url('assets/training.jpg');"></div>
+
+        <div class="cardBody">
+          <h3>Formation Before Placement</h3>
+
+          <ul>
+            <li>Work readiness training</li>
+            <li>Discipline and accountability systems</li>
+            <li>Communication and professionalism</li>
+            <li>Skill formation aligned to employer demand</li>
+            <li>Structured mentorship and evaluation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardBody">
+          <h3>The Outcome</h3>
+
+          <p>
+            Our objective is not temporary empowerment. We build reliable workforce capability that businesses can trust.
+          </p>
+
+          <br>
+
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Entry</th>
+                  <th>Formation</th>
+                  <th>Deployment</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Raw potential</td>
+                  <td>30–90 day formation</td>
+                  <td>Structured placement</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="businesses">
+  <div class="container">
+
+    <div class="sectionHead">
+      <h2>For Businesses</h2>
+      <p class="lead">
+        We do not function like a recruitment agency. We build workforce reliability before deployment.
+      </p>
+    </div>
+
+    <div class="grid2">
+
+      <div class="card">
+        <div class="img" style="background-image:url('assets/business.jpg');"></div>
+
+        <div class="cardBody">
+          <h3>Business Support Systems</h3>
+
+          <ul>
+            <li>Pre-trained workforce deployment</li>
+            <li>Custom staff formation programs</li>
+            <li>Human capital strengthening</li>
+            <li>90-day operational oversight</li>
+            <li>Succession and continuity support</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardBody">
+          <h3>The Difference</h3>
+
+          <div class="tableWrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Typical Agency</th>
+                  <th>Business Capital</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Places ready-made talent</td>
+                  <td>Builds workforce from scratch</td>
+                </tr>
+
+                <tr>
+                  <td>Placement-focused</td>
+                  <td>Formation-focused</td>
+                </tr>
+
+                <tr>
+                  <td>No post-placement oversight</td>
+                  <td>90-day oversight system</td>
+                </tr>
+
+                <tr>
+                  <td>Reactive staffing</td>
+                  <td>Structured workforce infrastructure</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="container">
+
+    <div class="sectionHead">
+      <h2>Operational Process</h2>
+      <p class="lead">
+        Our system converts willingness into workforce capability through a disciplined operational pipeline.
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="step">
+        <div class="num">1</div>
+
+        <div>
+          <h3>Entry</h3>
+          <p>
+            Individuals enter the system with willingness and availability.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+
+        <div>
+          <h3>Formation</h3>
+          <p>
+            Structured discipline, communication, accountability, and skill training over 30–90 days.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+
+        <div>
+          <h3>Matching</h3>
+          <p>
+            Workers are aligned to businesses based on capability, reliability, and operational demand.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">4</div>
+
+        <div>
+          <h3>Placement</h3>
+          <p>
+            Deployment into real operational environments with accountability systems in place.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">5</div>
+
+        <div>
+          <h3>Oversight</h3>
+          <p>
+            Weekly and bi-weekly oversight during the first 90 days to stabilize performance and reliability.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="oversight">
+  <div class="container">
+
+    <div class="sectionHead">
+      <h2>Institutional Oversight Layer</h2>
+      <p class="lead">
+        Business Capital operates through tracking systems, cohort management, and operational oversight.
+      </p>
+    </div>
+
+    <div class="grid3">
+
+      <div class="card">
+        <div class="cardBody">
+          <h3>Intake IDs</h3>
+          <p>
+            Every recruit, business request, and placement receives structured institutional identification.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardBody">
+          <h3>Cohort Tracking</h3>
+          <p>
+            Active trainees are monitored through attendance, discipline, readiness, and deployment metrics.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardBody">
+          <h3>90-Day Monitoring</h3>
+          <p>
+            Workforce stability is protected through structured oversight after deployment.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid2">
+
+    <div class="card">
+      <div class="cardBody">
+
+        <h2>Recruit Intake</h2>
+
+        <form>
+          <input type="text" placeholder="Full Name" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <input type="text" placeholder="Location" required>
+
+          <select required>
+            <option value="">Select Track</option>
+            <option>Cleaning & Maintenance</option>
+            <option>Security Support</option>
+            <option>Teaching Assistance</option>
+            <option>Administrative Support</option>
+          </select>
+
+          <textarea placeholder="Tell us why you want to join Business Capital"></textarea>
+
+          <a href="https://wa.me/2348136805462" class="btn primary">
+            Submit Through WhatsApp
+          </a>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardBody">
+
+        <h2>Business Request</h2>
+
+        <form>
+          <input type="text" placeholder="Business Name" required>
+          <input type="text" placeholder="Contact Person" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <input type="email" placeholder="Email Address">
+
+          <textarea placeholder="Describe the workforce support your business needs"></textarea>
+
+          <a href="https://wa.me/2348136805462" class="btn primary">
+            Request Workforce Support
+          </a>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+
+    <div class="card">
+      <div class="cardBody">
+
+        <h2>Contact Business Capital</h2>
+
+        <p class="lead">
+          We build workforce reliability through structure, formation, and oversight.
+        </p>
+
+        <br><br>
+
+        <div class="grid2">
+
+          <div>
+            <h3>Operational Contact</h3>
+
+            <p>
+              WhatsApp: +2348136805462
+              <br><br>
+              Phone: +2349038129138
+              <br><br>
+              Email: arinonebusiness@gmail.com
+              <br><br>
+              Location: New Extension Samaru, Zaria, Kaduna State, Nigeria
             </p>
-
-            <div class="btns">
-              <a class="btn primary" href="#recruitForm">Apply (Individuals)</a>
-              <a class="btn" href="#businessForm">Request Staff (Businesses)</a>
-              <a class="btn" href="#process">See Our Process</a>
-            </div>
-
-            <div class="pillrow" aria-label="From scratch definition">
-              <div class="pill"><span class="highlight">No experience</span> required</div>
-              <div class="pill"><span class="highlight">No degree</span> necessary</div>
-              <div class="pill"><span class="highlight">No connections</span> needed</div>
-              <div class="pill"><span class="highlight">Raw potential</span> → formed workforce</div>
-            </div>
-
-            <div class="hr"></div>
-            <div class="callout">
-              <strong>We are excellent people and it shows in our work.</strong><br/>
-              This is not recruitment. This is formation.
-            </div>
           </div>
 
-          <div class="heroMedia">
-            <div class="img" role="img" aria-label="d7bab702-2ed9-403f-9322-0a20b51095be.png"></div>
-            <div class="cap">
-              Pilot base: <strong>Zaria, Nigeria</strong> •
-              <span class="gold">Formation</span> • Skill • Deployment
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <div>
+            <h3>Operating Philosophy</h3>
 
-    <!-- INDIVIDUALS -->
-    <section id="individuals" class="section">
-      <div class="wrap">
-        <h2>For Individuals</h2>
-        <p>The outcome is job-ready discipline + a usable skill + verified work habits.</p>
-
-        <div class="cols">
-          <div class="card">
-            <h3 style="margin:0 0 10px;font-size:18px">What you receive</h3>
-            <ul class="list">
-              <li>Basic work readiness training</li>
-              <li>Skill-specific development</li>
-              <li>Job placement support</li>
-              <li>Ongoing mentorship</li>
-            </ul>
-            <div class="hr"></div>
-            <div class="small">Entry begins with willingness. No experience required.</div>
-            <div class="btns" style="margin-top:12px">
-              <a class="btn primary" href="#recruitForm">Apply now</a>
-            </div>
-          </div>
-
-          <div class="mediaCard">
-            <div class="img" style="background-image:url('assets/training.jpg');"></div>
-            <div class="cap">Formation before placement. Discipline before skill.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUSINESSES -->
-    <section id="businesses" class="section">
-      <div class="wrap">
-        <h2>For Businesses</h2>
-        <p>We provide pre-formed candidates plus 90-day oversight. You pay for formation and reliability, not placement fees.</p>
-
-        <div class="cols">
-          <div class="card">
-            <h3 style="margin:0 0 10px;font-size:18px">What you receive</h3>
-            <ul class="list">
-              <li>Pre-screened, pre-trained candidates</li>
-              <li>Custom training programs for your team</li>
-              <li>Human capital audit and development plans</li>
-              <li>Succession and continuity support</li>
-            </ul>
-            <div class="hr"></div>
-            <div class="small">We deploy formed people. Then we stay involved for 90 days.</div>
-            <div class="btns" style="margin-top:12px">
-              <a class="btn primary" href="#businessForm">Request staff</a>
-            </div>
-          </div>
-
-          <div class="mediaCard">
-            <div class="img" style="background-image:url('assets/business.jpg');"></div>
-            <div class="cap">Reliability is engineered. Oversight protects employer and worker.</div>
-          </div>
-        </div>
-
-        <div class="hr"></div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-        <div class="card">
-          <h3 style="margin:0 0 10px;font-size:18px">How we are different</h3>
-          <table class="table" aria-label="Difference table">
-            <thead>
-              <tr><th>Typical Agency</th><th>Business Capital</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Places ready-made talent</td><td>Makes talent from scratch</td></tr>
-              <tr><td>Takes a cut of salary</td><td>Charges businesses for formation, not placement fees</td></tr>
-              <tr><td>No ongoing relationship</td><td>90-day oversight after placement</td></tr>
-              <tr><td>Reacts to demand</td><td>Builds supply of capable people first</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process" class="section">
-      <div class="wrap">
-        <h2>Our Process</h2>
-        <p>Step-by-step: from raw recruit → formed worker → placed and supported.</p>
-
-        <div class="card">
-          <table class="table" aria-label="Process steps">
-            <thead>
-              <tr><th>Step</th><th>What happens</th><th>Timeline</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>1. Entry</strong></td><td>Individual walks in with nothing but willingness.</td><td>Day 1–3</td></tr>
-              <tr><td><strong>2. Formation</strong></td><td>30–90 days of foundational training (discipline + skill).</td><td>30–90 days</td></tr>
-              <tr><td><strong>3. Matching</strong></td><td>We connect them to a business that needs their profile.</td><td>3–7 days</td></tr>
-              <tr><td><strong>4. Placement</strong></td><td>They begin work. We continue oversight for 90 days.</td><td>90 days</td></tr>
-              <tr><td><strong>5. Growth</strong></td><td>Business can request advanced training for the same worker.</td><td>As needed</td></tr>
-            </tbody>
-          </table>
-          <div class="hr"></div>
-          <div class="callout">
-            <strong>Without formed people, nothing stands.</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMS (WHATSAPP CONNECTED) -->
-    <section id="forms" class="section">
-      <div class="wrap">
-        <h2>Apply / Request</h2>
-        <p>Submit your details. Your message will open directly in WhatsApp to our intake line.</p>
-
-        <div class="cols">
-          <!-- RECRUIT INTAKE -->
-          <div class="card" id="recruitForm">
-            <h3 style="margin:0 0 8px;font-size:18px">Recruit Intake</h3>
-            <p class="small">Entry begins with willingness. No experience required.</p>
-
-            <form id="formRecruit">
-              <!-- EXACT Phase 3 questions -->
-              <label>Full Name</label>
-              <input name="full_name" required />
-
-              <label>Phone Number</label>
-              <input name="phone_number" required />
-
-              <div class="row2">
-                <div>
-                  <label>Location / Area</label>
-                  <input name="location_area" required />
-                </div>
-                <div>
-                  <label>Age</label>
-                  <input name="age" type="number" min="10" max="80" required />
-                </div>
-              </div>
-
-              <label>Can you read and write? (Yes/No)</label>
-              <select name="can_read_write" required>
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-
-              <label>Are you willing to follow rules and daily routines? (Yes/No)</label>
-              <select name="willing_rules" required>
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-
-              <label>Are you available for 30–90 days training? (Yes/No)</label>
-              <select name="available_training" required>
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-
-              <label>Preferred work track</label>
-              <select name="preferred_track" required>
-                <option value="" selected disabled>Select</option>
-                <option>Cleaning Ops</option>
-                <option>Customer Service</option>
-                <option>Security Support</option>
-                <option>Office Assistant</option>
-                <option>Maintenance Support</option>
-                <option>Teaching Assistant</option>
-                <option>Other</option>
-              </select>
-
-              <label>What time did you submit this form? (auto)</label>
-              <input name="submitted_time" id="recruit_time" readonly />
-
-              <label>Why should we accept you? (short answer)</label>
-              <textarea name="why_accept" required></textarea>
-
-              <div class="btns" style="margin-top:14px">
-                <button class="btn primary" type="submit">Send to WhatsApp</button>
-                <button class="btn" type="reset">Clear</button>
-              </div>
-
-              <div class="note">
-                Confirmation message: <br/>
-                <strong>Thank you.</strong> Your intake has been received. If you qualify, you will be contacted with the next intake date.
-              </div>
-            </form>
-          </div>
-
-          <!-- BUSINESS REQUEST -->
-          <div class="card" id="businessForm">
-            <h3 style="margin:0 0 8px;font-size:18px">Business Request</h3>
-            <p class="small">Request pre-formed staff and 90-day oversight.</p>
-
-            <form id="formBusiness">
-              <label>Business Name</label>
-              <input name="business_name" required />
-
-              <div class="row2">
-                <div>
-                  <label>Contact Person</label>
-                  <input name="contact_person" required />
-                </div>
-                <div>
-                  <label>Phone / WhatsApp</label>
-                  <input name="phone_whatsapp" required />
-                </div>
-              </div>
-
-              <label>Email</label>
-              <input name="email" type="email" />
-
-              <label>Location</label>
-              <input name="location" required />
-
-              <label>Roles Needed (list roles + number)</label>
-              <textarea name="roles_needed" placeholder="Example: Cleaning staff (3), Office assistant (1), Teaching assistant (2)" required></textarea>
-
-              <label>Start Date Needed</label>
-              <input name="start_date" type="date" />
-
-              <label>Any special requirements?</label>
-              <textarea name="requirements" placeholder="Example: shift schedule, language needs, uniform, experience preferences"></textarea>
-
-              <div class="btns" style="margin-top:14px">
-                <button class="btn primary" type="submit">Send to WhatsApp</button>
-                <button class="btn" type="reset">Clear</button>
-              </div>
-
-              <div class="note">
-                Confirmation message: <br/>
-                <strong>Thank you.</strong> Your request has been received. We will contact you to confirm role requirements and deployment timeline.
-              </div>
-
-              <div class="hr"></div>
-              <div class="small">
-                Pricing principle: businesses pay for formation and reliability — not placement fees.
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="wrap">
-        <h2>Contact</h2>
-        <p>Direct lines for the pilot phase.</p>
-
-        <div class="cols">
-          <div class="card">
-            <h3 style="margin:0 0 10px;font-size:18px">Direct</h3>
-            <div class="small">WhatsApp (Intake):</div>
-            <div style="margin:6px 0 12px"><strong>+2348136805462</strong></div>
-
-            <div class="small">Phone:</div>
-            <div style="margin:6px 0 12px"><strong>+2349038129138</strong></div>
-
-            <div class="small">Email:</div>
-            <div style="margin:6px 0 0"><strong>arinonebusiness@gmail.com</strong></div>
-
-            <div class="hr"></div>
-            <div class="btns">
-              <a class="btn primary" href="https://wa.me/2348136805462" target="_blank" rel="noopener">Open WhatsApp</a>
-              <a class="btn" href="mailto:arinonebusiness@gmail.com">Email Us</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3 style="margin:0 0 10px;font-size:18px">Location</h3>
-            <p class="small" style="margin:0 0 10px">
-              New Extension Samaru, Zaria, Kaduna, Nigeria
+            <p>
+              We do not take shortcuts.
+              <br><br>
+              We build people carefully, deploy responsibly, and maintain oversight intentionally.
+              <br><br>
+              Business Capital exists to strengthen the workforce foundation businesses depend on.
             </p>
-
-            <div class="hr"></div>
-            <div class="callout">
-              <strong>Formation • Skill • Deployment</strong><br/>
-              90-day oversight after placement.
-            </div>
           </div>
+
         </div>
+
       </div>
-    </section>
+    </div>
 
-    <footer class="footer">
-      <div class="wrap">
-        © <span id="y"></span> Business Capital — Human Capital From Scratch
-        <div class="small" style="margin-top:8px">We do not recruit. We form.</div>
+  </div>
+</section>
+
+<footer>
+
+  <div class="container">
+
+    <div class="bcLogo" style="justify-content:center;">
+      <div class="bcShield">
+        <div class="bcInner">BC</div>
       </div>
-    </footer>
-  </main>
 
-<script>
-  // ===== SETTINGS (LOCKED) =====
-  const WHATSAPP_NUMBER = "2348136805462"; // no plus sign
+      <div class="bcTextWrap">
+        <div class="bcName">BUSINESS CAPITAL</div>
+        <div class="bcLine"></div>
+        <div class="bcTag">Human Capital From Scratch</div>
+      </div>
+    </div>
 
-  // Auto timestamps
-  const now = new Date();
-  document.getElementById("recruit_time").value = now.toLocaleString();
+    <p class="footerText">
+      Business Capital is a workforce formation institution focused on building reliable human capital from scratch through disciplined systems, placement infrastructure, and oversight.
+    </p>
 
-  // Footer year
-  document.getElementById("y").textContent = new Date().getFullYear();
+  </div>
 
-  // Helpers
-  function openWhatsApp(message){
-    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank", "noopener");
-  }
+</footer>
 
-  // Recruit Intake -> WhatsApp
-  document.getElementById("formRecruit").addEventListener("submit", function(e){
-    e.preventDefault();
-    const f = new FormData(this);
-
-    const msg =
-`BUSINESS CAPITAL — RECRUIT INTAKE
-Full Name: ${f.get("full_name")}
-Phone Number: ${f.get("phone_number")}
-Location/Area: ${f.get("location_area")}
-Age: ${f.get("age")}
-Can read/write: ${f.get("can_read_write")}
-Willing to follow rules/daily routines: ${f.get("willing_rules")}
-Available for 30–90 days training: ${f.get("available_training")}
-Preferred work track: ${f.get("preferred_track")}
-Submitted time: ${f.get("submitted_time")}
-Why should we accept you: ${f.get("why_accept")}
-
-Thank you. Your intake has been received. If you qualify, you will be contacted with the next intake date.`;
-
-    openWhatsApp(msg);
-  });
-
-  // Business Request -> WhatsApp
-  document.getElementById("formBusiness").addEventListener("submit", function(e){
-    e.preventDefault();
-    const f = new FormData(this);
-
-    const msg =
-`BUSINESS CAPITAL — BUSINESS REQUEST
-Business Name: ${f.get("business_name")}
-Contact Person: ${f.get("contact_person")}
-Phone/WhatsApp: ${f.get("phone_whatsapp")}
-Email: ${f.get("email") || "N/A"}
-Location: ${f.get("location")}
-Roles Needed: ${f.get("roles_needed")}
-Start Date Needed: ${f.get("start_date") || "N/A"}
-Special requirements: ${f.get("requirements") || "N/A"}
-
-Thank you. Your request has been received. We will contact you to confirm role requirements and deployment timeline.`;
-
-    openWhatsApp(msg);
-  });
-</script>
 </body>
 </html>
